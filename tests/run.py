@@ -64,21 +64,29 @@ resultpath = '/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test3.pn
 
 
 # Load a FITS file into a numpy array
-def from_fits(path: Path) -> np.ndarray:
-    hdu_list = fits.open(path)
-    data = hdu_list[0].data
-    hdu_list.close()
-    return data
+# def from_fits(path: Path) -> np.ndarray:
+#     hdu_list = fits.open(path)
+#     data = hdu_list[0].data
+#     hdu_list.close()
+#     return data
 
-data = from_fits(Path('/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test.fits'))
+# data = from_fits(Path('/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test.fits'))
 
-print(data)
+# print(data)
 
 
-# Convert a numpy array into a fits image
-def to_fits(data, path: Path) -> np.ndarray:
-    hdu = fits.PrimaryHDU(data)
-    hdu.writeto(path)
-    return True
+# # Convert a numpy array into a fits image
+# def to_fits(data, path: Path) -> np.ndarray:
+#     hdu = fits.PrimaryHDU(data)
+#     hdu.writeto(path)
+#     return True
 
-to_fits(data, Path('/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test2.fits'))
+# to_fits(data, Path('/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test2.fits'))
+
+
+imgpath = '/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test.fits'
+datapath = '/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test_data'
+resultpath = '/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test2.fits'
+
+data = nfy.from_fits_file(imgpath)
+nfy.to_fits_file(data, resultpath)

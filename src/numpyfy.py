@@ -46,7 +46,7 @@ def to_png_file(data: np.ndarray, target_path: Path) -> bool:
 
 
 # Convert a fits file into a numpy array
-def from_fits(path: Path) -> np.ndarray:
+def from_fits_file(path: Path) -> np.ndarray:
     """Converts a fits file into a numpy array.
 
     Args:
@@ -61,7 +61,7 @@ def from_fits(path: Path) -> np.ndarray:
     return data
 
 # Convert a numpy array into a fits image
-def to_fits(data: np.ndarray, path: Path) -> np.ndarray:
+def to_fits_file(data: np.ndarray, path: Path) -> np.ndarray:
     """Converts a numpy array into a fits file.
 
     Args:
