@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='numpyfy',
-    version='0.0.2',
+    version='0.0.3',
     description='A simple tool for converting different filetypes to numpy arrays',
     py_modules=['numpyfy'],
     package_dir={'': 'src'},

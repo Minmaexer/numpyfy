@@ -10,15 +10,29 @@ def test_default():
 def from_png_file(path: Path) -> np.ndarray:
     """
     Converts a PNG file (in RGB or RGBA format) to a 1-D numpy array.
+
+    Args:
+        path (Path): path to the PNG file.
+
+    Returns:
+        np.ndarray: numpy array of the PNG file.
     """
+
     # Load a PNG file into a numpy array in RGB format
     data = np.asarray(Image.open(path).convert('RGBA')) # int
     return data.ravel()
 
 def to_png_file(data: np.ndarray, target_path: Path) -> bool:
+    """Converts a numpy array to a PNG file (RGBA) and stores it into a file.
+
+    Args:
+        data (np.ndarray): numpy array to convert.
+        target_path (Path): path to the PNG file.
+
+    Returns:
+        bool: True if successful, False otherwise.
     """
-    Converts a numpy array to a PNG file (RGBA) and stores it into a file.
-    """
+    
     #TODO Flag for RGB or RGBA format for /3 or /4
     # Load a file into a numpy array
     shape_side = int(math.sqrt(data.size / 4))
@@ -31,18 +45,35 @@ def to_png_file(data: np.ndarray, target_path: Path) -> bool:
     return True
 
 
-# # Convert a fits file into a numpy array
-# def from_fits(path: Path) -> np.ndarray:
-#     hdu_list = fits.open(path)
-#     data = hdu_list[0].data
-#     hdu_list.close()
-#     return data
+# Convert a fits file into a numpy array
+def from_fits(path: Path) -> np.ndarray:
+    """Converts a fits file into a numpy array.
 
-# # Convert a numpy array into a fits image
-# def to_fits(data, path: Path) -> np.ndarray:
-#     hdu = fits.PrimaryHDU(data)
-#     hdu.writeto(path)
-#     return True
+    Args:
+        path (Path): path to the fits file.
+
+    Returns:
+        np.ndarray: numpy array of the fits file.
+    """
+    hdu_list = fits.open(path)
+    data = hdu_list[0].data
+    hdu_list.close()
+    return data
+
+# Convert a numpy array into a fits image
+def to_fits(data: np.ndarray, path: Path) -> np.ndarray:
+    """Converts a numpy array into a fits file.
+
+    Args:
+        data (np.ndarray): numpy array to convert.
+        path (Path): path to the fits file.
+
+    Returns:
+        np.ndarray: numpy array of the fits file.
+    """
+    hdu = fits.PrimaryHDU(data)
+    hdu.writeto(path)
+    return True
 
 # # Convert a JPEG file into a numpy array
 # def from_jpeg(path: Path) -> np.ndarray::

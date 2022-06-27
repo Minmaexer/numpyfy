@@ -2,6 +2,8 @@ import numpy as np
 import numpyfy as nfy
 from PIL import Image
 import math
+from astropy.io import fits
+from pathlib import Path
 
 # a = nfy.to_fits(np.ones((10, 10)), 'test.fits')
 # b = nfy.from_png_file('/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test.png')
@@ -50,5 +52,33 @@ resultpath = '/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test3.pn
 # img.save(resultpath)
 
 
-data = nfy.from_png_file(imgpath)
-nfy.to_png_file(data, resultpath)
+# data = nfy.from_png_file(imgpath)
+# nfy.to_png_file(data, resultpath)
+
+#----------
+
+
+# # Load a PNG file into a numpy array in RGB format
+# data = np.asarray(Image.open(path).convert('RGBA')) # int
+# return data.ravel()
+
+
+# Load a FITS file into a numpy array
+def from_fits(path: Path) -> np.ndarray:
+    hdu_list = fits.open(path)
+    data = hdu_list[0].data
+    hdu_list.close()
+    return data
+
+data = from_fits(Path('/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test.fits'))
+
+print(data)
+
+
+# Convert a numpy array into a fits image
+def to_fits(data, path: Path) -> np.ndarray:
+    hdu = fits.PrimaryHDU(data)
+    hdu.writeto(path)
+    return True
+
+to_fits(data, Path('/home/preller/h/workspace/pypi/manual/numpyfy/tests/files/test2.fits'))
