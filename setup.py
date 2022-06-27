@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='numpyfy',
-    version='0.0.1',
+    version='0.0.2',
     description='A simple tool for converting different filetypes to numpy arrays',
     py_modules=['numpyfy'],
     package_dir={'': 'src'},
@@ -22,7 +22,7 @@ setup(
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',
-    install_requires=['numpy'],
+    install_requires=['numpy', 'astropy', 'Pillow'],
     extras_require={
         'dev': ['pytest>=3.7',
                 'Mock>=3.0.0',
